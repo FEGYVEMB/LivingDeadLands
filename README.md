@@ -1,2 +1,2 @@
 # LivingDeadLands
-This is a Unity portfolio project that I have dreamed about for the last few months. A zombie-shooter FPS game.
+This is a Unity portfolio project, namely a zombie-shooter FPS game. It has a survival-type of gameplay where the player defeats zombie waves in order to collect points before being overwhelmed.
