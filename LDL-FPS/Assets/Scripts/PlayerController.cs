@@ -4,36 +4,51 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector2 rotation = Vector2.zero;
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private bool isGrounded;
+
     public Rigidbody playerRb;
     public float lookSpeed = 3;
-    public float speed = 10;
+    public float speed = 5f;
+    public float gravity = -9.81f;
+    public float jumpHeight = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rotation.y += Input.GetAxis("Mouse X");
-        rotation.x -= Input.GetAxis("Mouse Y");
+        isGrounded = controller.isGrounded;
+    }
 
-        transform.eulerAngles = rotation * lookSpeed;
+    // receive inputs for input manager class and apply to character controller
+    public void ProcessMove(Vector2 input)
+    {
+        Vector3 moveDirection = Vector3.zero;
+        moveDirection.x = input.x;
+        moveDirection.z = input.y;
 
-        if (Input.GetKey(KeyCode.W))
+        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+        playerVelocity.y += gravity * Time.deltaTime;
+
+        if (isGrounded && playerVelocity.y < 0)
         {
+            playerVelocity.y = -2f;
         }
-        if (Input.GetKey(KeyCode.S))
+        controller.Move(playerVelocity * Time.deltaTime);
+        Debug.Log("applied forces on y axis: " + playerVelocity.y);
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
         {
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
+            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
     }
 }
