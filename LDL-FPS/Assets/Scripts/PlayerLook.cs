@@ -7,8 +7,16 @@ public class PlayerLook : MonoBehaviour
     private float xRotation = 0f;
 
     public Camera cam;
+    public GameObject gun;
     public float xSensitivity = 30;
     public float ySensitivity = 30;
+
+    public void Start()
+    {
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     public void ProcessLook(Vector2 input)
     {
@@ -21,6 +29,8 @@ public class PlayerLook : MonoBehaviour
 
         // apply rotation value to camera transform
         cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        gun.transform.localRotation = Quaternion.Euler(xRotation * 1.5f, 0, 0);
+        
 
         // rotate player for looking left and right
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);

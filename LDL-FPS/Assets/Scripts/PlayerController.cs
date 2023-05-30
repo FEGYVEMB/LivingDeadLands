@@ -36,12 +36,12 @@ public class PlayerController : MonoBehaviour
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
         playerVelocity.y += gravity * Time.deltaTime;
 
+        // make sure that the applied gravity does not apply infinitely 
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
-        Debug.Log("applied forces on y axis: " + playerVelocity.y);
     }
 
     public void Jump()
