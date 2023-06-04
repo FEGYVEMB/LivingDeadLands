@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody playerRb;
     public float lookSpeed = 3;
-    public float speed = 5f;
+    public float speed = 10f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 

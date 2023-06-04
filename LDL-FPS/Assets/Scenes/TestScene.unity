@@ -1791,7 +1791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933208515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2, z: 25}
+  m_LocalPosition: {x: 0.5, y: 2.44, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2287,56 +2287,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186312501}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1193585567 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3198364591615371226, guid: c1dd95a9411341240b96be555ceb9e21, type: 3}
-  m_PrefabInstance: {fileID: 3198364591637091133}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1193585572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193585567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3f922149100ea468710dbc00b279ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRb: {fileID: 0}
-  lookSpeed: 3
-  speed: 5
-  gravity: -9.81
-  jumpHeight: 1.5
---- !u!114 &1193585573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193585567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603c5b1aae33f394a93279a5b41fae15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1193585574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193585567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49139dc1c13e32f4fab58ab6bb02bc3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 1985458542}
-  gun: {fileID: 0}
-  xSensitivity: 30
-  ySensitivity: 30
 --- !u!1 &1270719129
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,11 +3616,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907332758}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!20 &1985458542 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3198364591964640882, guid: c1dd95a9411341240b96be555ceb9e21, type: 3}
-  m_PrefabInstance: {fileID: 3198364591637091133}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014647248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,6 +3720,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1193585572, guid: c1dd95a9411341240b96be555ceb9e21, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193585572, guid: c1dd95a9411341240b96be555ceb9e21, type: 3}
+      propertyPath: jumpHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3198364591615371222, guid: c1dd95a9411341240b96be555ceb9e21, type: 3}
       propertyPath: m_RootOrder
       value: 2

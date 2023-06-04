@@ -18,11 +18,11 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // find target position and move towards target
-        Vector3 moveDirection = (target.transform.position - transform.position).normalized;
+        Vector3 moveDirection = (target.transform.position - transform.position) * 1.0f;
 
-        enemyRb.AddForce(speed * Time.deltaTime * moveDirection);
+        enemyRb.AddForce(moveDirection.normalized * Time.fixedDeltaTime *  speed);
     }
 }
