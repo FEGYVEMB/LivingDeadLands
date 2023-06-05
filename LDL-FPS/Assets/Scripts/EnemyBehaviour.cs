@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
     private GameObject target;
-    private Rigidbody enemyRb;
+    private NavMeshAgent navAgent;
 
     public float speed = 50.0f;
 
@@ -14,15 +13,18 @@ public class EnemyBehaviour : MonoBehaviour
     {
         // initialize components
         target = GameObject.Find("Player");
-        enemyRb = GetComponent<Rigidbody>();
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        // find target position and move towards target
-        Vector3 moveDirection = (target.transform.position - transform.position) * 1.0f;
+        //Vector3 moveDirection = (target.transform.position - transform.position) * 1.0f;
 
-        enemyRb.AddForce(moveDirection.normalized * Time.fixedDeltaTime *  speed);
+        //enemyRb.AddForce(moveDirection.normalized * Time.fixedDeltaTime *  speed);
+
+        // find target position and move towards target
+        navAgent.destination = target.transform.position;
+
     }
 }
