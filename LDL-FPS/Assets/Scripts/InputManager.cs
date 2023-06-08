@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
         look = GetComponent<PlayerLook>();
         gun = GameObject.Find("Gun").GetComponent<GunController>();
 
+        // add callback context to jump and shooting where the respective methods are called
         onFoot.Jump.performed += ctx => controller.Jump();
         onFoot.Shoot.performed += ctx => gun.Shoot();
     }

@@ -1,8 +1,9 @@
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class GunController : MonoBehaviour
 {
-    public float damage = 10.0f;
+    public float damage = 50.0f;
     public float range = 100.0f;
 
     public Camera cam;
@@ -15,12 +16,25 @@ public class GunController : MonoBehaviour
 
     public void Shoot()
     {
-        RaycastHit hitInfo;
+        RaycastHit hit;
 
         // raycast a vector forwards, if hit something, 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, range))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
-            Debug.Log(hitInfo.transform.name);
+            Debug.Log(hit.transform.name);
+
+            EnemyBehaviour target = hit.transform.GetComponent<EnemyBehaviour>();
+
+            if (target != null)
+            {
+                target.DecreaseHealth(damage);
+            }
         }
+    }
+
+    // draw raycast line for debugging
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(cam.transform.position, cam.transform.forward * 40);
     }
 }

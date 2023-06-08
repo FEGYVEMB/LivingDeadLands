@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
     private NavMeshAgent navAgent;
 
     public float speed = 50.0f;
+    public float health = 50.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +20,16 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Vector3 moveDirection = (target.transform.position - transform.position) * 1.0f;
-
-        //enemyRb.AddForce(moveDirection.normalized * Time.fixedDeltaTime *  speed);
-
         // find target position and move towards target
         navAgent.destination = target.transform.position;
+    }
 
+    public void DecreaseHealth(float amount)
+    {
+        health -= amount;
+        if (health <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
