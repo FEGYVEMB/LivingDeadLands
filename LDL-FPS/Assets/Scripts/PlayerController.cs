@@ -52,4 +52,17 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
     }
+
+    public void DecreaseHealth(float amount)
+    {
+        // take damage equal to amount given
+        Debug.Log($"player was hit with damage: {amount}");
+        health -= amount;
+
+        // kill player if health reaches zero
+        if (health <= 0f)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

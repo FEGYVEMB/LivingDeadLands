@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public float speed = 50.0f;
     public float health = 50.0f;
+    public float damage = 20.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,14 @@ public class EnemyBehaviour : MonoBehaviour
         if (health <= 0f)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name== "Player")
+        {
+            target.GetComponent<PlayerController>().DecreaseHealth(damage);
         }
     }
 }
