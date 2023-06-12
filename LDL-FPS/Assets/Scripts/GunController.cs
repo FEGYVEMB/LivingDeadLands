@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour
     {
         RaycastHit hit;
 
-        // raycast a vector forwards, if hit something, 
+        // raycast a vector forwards, if hit something, apply damage
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
