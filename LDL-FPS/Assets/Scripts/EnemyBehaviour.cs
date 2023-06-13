@@ -36,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name== "Player")
+        if (collision.gameObject.name == "Player")
         {
             target.GetComponent<PlayerController>().DecreaseHealth(damage);
         }

@@ -8,16 +8,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
 
-    public Rigidbody playerRb;
+    private PlayerStats stats;
+    private PlayerUI hud;
+
     public float lookSpeed = 3;
     public float speed = 10f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-    public float health = 100;
 
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<PlayerStats>();
+        hud = GetComponent<PlayerUI>();
         controller = GetComponent<CharacterController>();
     }
 
@@ -55,14 +58,17 @@ public class PlayerController : MonoBehaviour
 
     public void DecreaseHealth(float amount)
     {
-        // take damage equal to amount given
+
+        // take damage equal to amount, update HUD
         Debug.Log($"player was hit with damage: {amount}");
-        health -= amount;
+        stats.currentHealth -= amount;
+        hud.SetData();
 
         // kill player if health reaches zero
-        if (health <= 0f)
+        if (stats.currentHealth <= 0f)
         {
             Destroy(gameObject);
+            Debug.Log("YOU DIED!");
         }
     }
 }
