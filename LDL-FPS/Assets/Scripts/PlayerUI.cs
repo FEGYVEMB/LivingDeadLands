@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
     void Start()
     {
         playerStats = GetComponent<PlayerStats>();
+        SetData();
     }
 
     public void SetData()
