@@ -17,17 +17,13 @@ public class GunController : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Shoot()
     {
         RaycastHit hit;
 
         StartCoroutine(FireCooldown());
+
         // raycast a vector forwards, if hit something, apply damage
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
@@ -45,16 +41,14 @@ public class GunController : MonoBehaviour
         }
     }
 
-    // imitate the time elapsed between two shots and enable fire animation
+    // imitate time limit between shots
     IEnumerator FireCooldown()
     {
-        isFiring = true;
         animator.SetBool("Firing", true);
 
         yield return new WaitForSeconds(fireRate);
-        
+
         animator.SetBool("Firing", false);
-        isFiring = false;
     }
 
     // draw raycast line for debugging
