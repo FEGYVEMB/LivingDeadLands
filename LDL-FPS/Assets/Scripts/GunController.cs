@@ -31,6 +31,9 @@ public class GunController : MonoBehaviour
         // raycast a vector forwards, if hit something, apply damage
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
+            // debug drawray and display impacted target name
+            //Ray ray = cam.ScreenPointToRay(hit.point.normalized);
+            //Debug.DrawRay(cam.transform.position, hit.point.normalized, Color.red, 3);
             Debug.Log(hit.transform.name);
 
             EnemyBehaviour target = hit.transform.GetComponent<EnemyBehaviour>();
