@@ -11,11 +11,20 @@ public class GunController : MonoBehaviour
     public Camera cam;
     public Animator animator;
 
-    private bool isFiring;
+    private ParticleSystem muzzleFlash;
 
     private void Start()
     {
+        muzzleFlash = GetComponentInChildren<ParticleSystem>();
         animator = GetComponentInChildren<Animator>();
+
+        // enable texture sheet animation 
+        var muzzleFlashTs = muzzleFlash.textureSheetAnimation;
+        muzzleFlashTs.enabled = true;
+        muzzleFlashTs.numTilesX = 3;
+        muzzleFlashTs.numTilesY = 3;
+        muzzleFlashTs.rowMode = ParticleSystemAnimationRowMode.Custom;
+
     }
 
     public void Shoot()
