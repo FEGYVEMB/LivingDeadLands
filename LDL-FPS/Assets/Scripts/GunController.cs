@@ -8,23 +8,16 @@ public class GunController : MonoBehaviour
     public float range = 100.0f;
     public float fireRate = 0.1f;
 
-    public Camera cam;
     public Animator animator;
 
+    [SerializeField]private Camera cam;
     private ParticleSystem muzzleFlash;
 
     private void Start()
     {
+        // initialize fire animation components
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
         animator = GetComponentInChildren<Animator>();
-
-        // enable texture sheet animation 
-        var muzzleFlashTs = muzzleFlash.textureSheetAnimation;
-        muzzleFlashTs.enabled = true;
-        muzzleFlashTs.numTilesX = 3;
-        muzzleFlashTs.numTilesY = 3;
-        muzzleFlashTs.rowMode = ParticleSystemAnimationRowMode.Custom;
-
     }
 
     public void Shoot()
@@ -32,6 +25,7 @@ public class GunController : MonoBehaviour
         RaycastHit hit;
 
         StartCoroutine(FireCooldown());
+        muzzleFlash.Play();
 
         // raycast a vector forwards, if hit something, apply damage
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
