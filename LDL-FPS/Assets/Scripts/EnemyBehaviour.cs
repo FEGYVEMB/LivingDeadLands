@@ -10,12 +10,16 @@ public class EnemyBehaviour : MonoBehaviour
     public float health = 50.0f;
     public float damage = 20.0f;
 
+    public ParticleSystem bloodSplatter;
+
+
     // Start is called before the first frame update
     void Start()
     {
         // initialize components needed
         target = GameObject.Find("Player");
         navAgent = GetComponent<NavMeshAgent>();
+        bloodSplatter = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame

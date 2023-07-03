@@ -33,13 +33,19 @@ public class GunController : MonoBehaviour
             // debug drawray and display impacted target name
             //Ray ray = cam.ScreenPointToRay(hit.point.normalized);
             //Debug.DrawRay(cam.transform.position, hit.point.normalized, Color.red, 3);
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
 
-            EnemyBehaviour target = hit.transform.GetComponent<EnemyBehaviour>();
+            EnemyBehaviour enemyTarget = hit.transform.GetComponent<EnemyBehaviour>();
 
-            if (target != null)
+            if (enemyTarget != null)
             {
-                target.DecreaseHealth(damage);
+                if (enemyTarget.bloodSplatter != null)
+                {
+                //enemyTarget.bloodSplatter.transform.position = hit.point;
+                enemyTarget.bloodSplatter.Play();
+                }
+
+                enemyTarget.DecreaseHealth(damage);
             }
         }
     }
