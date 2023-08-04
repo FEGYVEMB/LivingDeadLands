@@ -39,12 +39,6 @@ public class GunController : MonoBehaviour
 
             if (enemyTarget != null)
             {
-                if (enemyTarget.bloodSplatter != null)
-                {
-                //enemyTarget.bloodSplatter.transform.position = hit.point;
-                enemyTarget.bloodSplatter.Play();
-                }
-
                 enemyTarget.DecreaseHealth(damage);
             }
         }

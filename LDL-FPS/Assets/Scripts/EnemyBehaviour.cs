@@ -32,6 +32,14 @@ public class EnemyBehaviour : MonoBehaviour
     public void DecreaseHealth(float amount)
     {
         health -= amount;
+
+        if (bloodSplatter != null)
+        {
+            //bloodSplatter.transform.position = hit.point;
+            bloodSplatter.Play();
+        }
+
+
         if (health <= 0f)
         {
             Destroy(gameObject);
@@ -40,6 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // if colliding with player, player takes damage
         if (collision.gameObject.name == "Player")
         {
             target.GetComponent<PlayerController>().DecreaseHealth(damage);
