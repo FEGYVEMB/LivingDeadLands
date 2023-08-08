@@ -33,13 +33,6 @@ public class EnemyBehaviour : MonoBehaviour
     {
         health -= amount;
 
-        if (bloodSplatter != null)
-        {
-            //bloodSplatter.transform.position = hit.point;
-            bloodSplatter.Play();
-        }
-
-
         if (health <= 0f)
         {
             Destroy(gameObject);

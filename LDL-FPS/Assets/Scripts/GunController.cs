@@ -44,11 +44,10 @@ public class GunController : MonoBehaviour
         }
     }
 
-    // imitate time limit between shots
+    // create time limit between shots
     IEnumerator FireCooldown()
     {
         animator.SetBool("Firing", true);
-
         yield return new WaitForSeconds(fireRate);
 
         animator.SetBool("Firing", false);
