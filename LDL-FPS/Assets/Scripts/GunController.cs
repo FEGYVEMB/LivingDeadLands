@@ -12,12 +12,15 @@ public class GunController : MonoBehaviour
 
     [SerializeField]private Camera cam;
     private ParticleSystem muzzleFlash;
+    private ImpactManager impactManager;
 
     private void Start()
     {
         // initialize fire animation components
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
         animator = GetComponentInChildren<Animator>();
+        impactManager = GameObject.Find("ImpactManager").GetComponent<ImpactManager>();
+
     }
 
     public void Shoot()
@@ -33,7 +36,9 @@ public class GunController : MonoBehaviour
             // debug drawray and display impacted target name
             //Ray ray = cam.ScreenPointToRay(hit.point.normalized);
             //Debug.DrawRay(cam.transform.position, hit.point.normalized, Color.red, 3);
-            //Debug.Log(hit.transform.name);
+            ////Debug.Log(hit.point);
+
+            impactManager.PlayAt(hit.point);
 
             EnemyBehaviour enemyTarget = hit.transform.GetComponent<EnemyBehaviour>();
 
