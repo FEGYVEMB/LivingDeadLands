@@ -7,12 +7,11 @@ using TMPro;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField]TMP_Text healthData, AmmoData;
-    PlayerStats playerStats;
+    [SerializeField]PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerStats = GetComponent<PlayerStats>();
         SetData();
     }
 
