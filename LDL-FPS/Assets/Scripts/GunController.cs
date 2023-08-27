@@ -37,9 +37,8 @@ public class GunController : MonoBehaviour
             //Ray ray = cam.ScreenPointToRay(hit.point.normalized);
             //Debug.DrawRay(cam.transform.position, hit.point.normalized, Color.red, 3);
             ////Debug.Log(hit.point);
-
-            impactManager.PlayAt(hit.point);
-
+            impactManager.PlayAt(hit.point, hit.collider.tag);
+            
             EnemyBehaviour enemyTarget = hit.transform.GetComponent<EnemyBehaviour>();
 
             if (enemyTarget != null)
