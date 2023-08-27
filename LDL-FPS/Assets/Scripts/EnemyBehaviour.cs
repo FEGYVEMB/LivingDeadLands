@@ -25,6 +25,7 @@ public class EnemyBehaviour : MonoBehaviour
         navAgent.destination = target.transform.position;
     }
 
+    // applies damage to Enemy health and kills enemy if health reaches zero
     public void DecreaseHealth(float amount)
     {
         health -= amount;

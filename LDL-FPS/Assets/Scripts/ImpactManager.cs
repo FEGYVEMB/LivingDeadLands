@@ -13,6 +13,7 @@ public class ImpactManager : MonoBehaviour
     {
         particles = particlePrefab.GetComponentsInChildren<ParticleSystem>();   
 
+        // set color of particles
         if (particles.Length > 0)
         {
             foreach (ParticleSystem p in particles)
@@ -30,10 +31,11 @@ public class ImpactManager : MonoBehaviour
             }
         }
 
+
+        // activate and play effect at location
         particleObject = Instantiate(particlePrefab, location, Quaternion.identity);
         var particleEffect = particleObject.GetComponentInChildren<ParticleSystem>();
 
-        // activate and play effect at location
         particlePrefab.SetActive(true);
 
         particlePrefab.transform.position = location;

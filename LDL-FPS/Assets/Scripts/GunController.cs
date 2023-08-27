@@ -23,6 +23,7 @@ public class GunController : MonoBehaviour
 
     }
 
+    // shooting mechanics
     public void Shoot()
     {
         RaycastHit hit;

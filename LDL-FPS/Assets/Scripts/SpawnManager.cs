@@ -9,16 +9,10 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject enemyPrefab;
 
-    // Start is called before the first frame update
+    // start spawning enemies based spawnInterval
     void Start()
     {
         InvokeRepeating(nameof(SpawnEnemy), spawnDelay, spawnInterval);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void SpawnEnemy()

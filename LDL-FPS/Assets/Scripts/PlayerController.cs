@@ -19,12 +19,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // initialize components 
         stats = GetComponent<PlayerStats>();
         hud = GetComponent<PlayerUI>();
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
+    // check if player is on the ground constantly
     void Update()
     {
         isGrounded = controller.isGrounded;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // apply damage dealt to Player, kill player if health reaches zero
     public void DecreaseHealth(float amount)
     {
 
@@ -64,7 +66,6 @@ public class PlayerController : MonoBehaviour
         stats.currentHealth -= amount;
         hud.SetData();
 
-        // kill player if health reaches zero
         if (stats.currentHealth <= 0f)
         {
             Destroy(gameObject);
