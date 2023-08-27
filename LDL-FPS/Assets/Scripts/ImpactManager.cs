@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class ImpactManager : MonoBehaviour
 {
-    public GameObject particleObject;
+    public GameObject particlePrefab;
     ParticleSystem[] particles;
-
+    GameObject particleObject;
 
     // play a particle at a certain location based on tag
     public void PlayAt(Vector3 location, string tag)
     {
-        particles = particleObject.GetComponentsInChildren<ParticleSystem>();
-        var particle = particleObject.GetComponent<ParticleSystem>();
-        
-        Instantiate(particleObject, location, Quaternion.identity);
+        particles = particlePrefab.GetComponentsInChildren<ParticleSystem>();   
 
         if (particles.Length > 0)
         {
@@ -27,15 +24,20 @@ public class ImpactManager : MonoBehaviour
                         pmain.startColor = Color.red;
                         break;
                     default:
+                        pmain.startColor = Color.white;
                         break;
                 }
             }
         }
-        // activate and play effect at location 
-        particleObject.SetActive(true);
 
-        particleObject.transform.position = location;
-        particle.Play();
+        particleObject = Instantiate(particlePrefab, location, Quaternion.identity);
+        var particleEffect = particleObject.GetComponentInChildren<ParticleSystem>();
+
+        // activate and play effect at location
+        particlePrefab.SetActive(true);
+
+        particlePrefab.transform.position = location;
+        particleEffect.Play();
     }
 
 }

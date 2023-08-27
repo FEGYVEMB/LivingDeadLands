@@ -7121,8 +7121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f160b17d74b0946b4cf8ba34ff399e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleObject: {fileID: 927180776950689853, guid: d707be6a5229bc64f805fbf35dfadda3, type: 3}
-  particles: []
+  particlePrefab: {fileID: 927180776950689853, guid: d707be6a5229bc64f805fbf35dfadda3, type: 3}
 --- !u!4 &920548445
 Transform:
   m_ObjectHideFlags: 0
