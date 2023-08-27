@@ -8,6 +8,9 @@ public class ImpactManager : MonoBehaviour
     ParticleSystem[] particles;
     GameObject particleObject;
 
+    // colors
+    Color brown = new Color(0.4823f, 0.3019f, 0.1372f);
+
     // play a particle at a certain location based on tag
     public void PlayAt(Vector3 location, string tag)
     {
@@ -23,6 +26,12 @@ public class ImpactManager : MonoBehaviour
                 {
                     case "Organic":
                         pmain.startColor = Color.red;
+                        break;
+                    case "Ground":
+                        pmain.startColor = brown;
+                        break;
+                    case "Metal":
+                        pmain.startColor = Color.gray;
                         break;
                     default:
                         pmain.startColor = Color.white;
