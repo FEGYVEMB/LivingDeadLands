@@ -1,17 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
+    // general
     private PlayerInput playerInput;
     private PlayerInput.OnFootActions onFoot;
+
+    // look and movement
     private PlayerController controller;
     private PlayerLook look;
-    private GunController gun;
 
-    // Start is called before the first frame update
+    // shooting
+    private GunController gun;
+    private FireModeController fireController;
+
     void Awake()
     {
         playerInput = new PlayerInput();
@@ -20,12 +24,23 @@ public class InputManager : MonoBehaviour
         look = GetComponent<PlayerLook>();
         gun = GameObject.Find("Gun").GetComponent<GunController>();
 
-        // add callback context to jump and shooting where the respective methods are called
+        // jump and shoot inputs receive context for the respective method calls 
         onFoot.Jump.performed += ctx => controller.Jump();
         onFoot.Shoot.performed += ctx => gun.Shoot();
+        onFoot.Shoot.started += ctx => 
+            {
+                fireController.enabled = true;
+                fireController.RapidFire();
+            };
+
+        onFoot.Shoot.canceled -= ctx => 
+            {
+                fireController.RapidFire();
+                fireController.enabled = false;
+            };
+
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         // tell playercontroller to move using the value from movement action
@@ -40,6 +55,7 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
         onFoot.Enable();
+
     }
 
     private void OnDisable()

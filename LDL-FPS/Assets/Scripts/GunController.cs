@@ -6,13 +6,14 @@ public class GunController : MonoBehaviour
 {
     public float damage = 50.0f;
     public float range = 100.0f;
-    public float fireRate = 0.1f;
+    public float fireRate = 0.3f;
 
     public Animator animator;
 
     [SerializeField]private Camera cam;
     private ParticleSystem muzzleFlash;
     private ImpactManager impactManager;
+    private FireModeController fireController;
 
     private void Start()
     {
@@ -20,7 +21,12 @@ public class GunController : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
         animator = GetComponentInChildren<Animator>();
         impactManager = GameObject.Find("ImpactManager").GetComponent<ImpactManager>();
+        fireController = GetComponentInParent<FireModeController>();
+    }
 
+    private void Update()
+    {
+        
     }
 
     // shooting mechanics
@@ -28,7 +34,7 @@ public class GunController : MonoBehaviour
     {
         RaycastHit hit;
 
-        StartCoroutine(FireCooldown());
+        StartCoroutine(fireController.FireCooldown(fireRate));
         muzzleFlash.Play();
 
         // raycast a vector forwards, if hit something, apply damage
@@ -47,15 +53,6 @@ public class GunController : MonoBehaviour
                 enemyTarget.DecreaseHealth(damage);
             }
         }
-    }
-
-    // create time limit between shots
-    IEnumerator FireCooldown()
-    {
-        animator.SetBool("Firing", true);
-        yield return new WaitForSeconds(fireRate);
-
-        animator.SetBool("Firing", false);
     }
 
     // draw raycast line for debugging
